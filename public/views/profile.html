@@ -15,6 +15,20 @@
       <ul>
         <li class="bolded">{{ currentUser.name }}</li>
       </ul>
+      <div class="buffer">
+      </div>
+      <ul>
+        <li ng-repeat="person in persons" class="micro-profile">
+            <span>
+              <img ng-src="{{ person.pic }}">
+            </span>
+            <span>
+              <p>{{person.name}}</p> 
+              <button ng-click="addFriend(person.name)">Add Friend</button>
+            </span>  
+            <hr/>
+        </li>
+      </ul>
     </div>  
 
 
@@ -23,6 +37,7 @@
         <img ng-src="{{ friend.pic }}">
         <li class="bolded">{{ friend.name }}</li>
         <li>{{ friend.status }}</li>
+        <li><button ng-click="removeFriend(friend.name)">Unfriend</button></li>
         <hr>
       </ul>   
     </div>

@@ -1,7 +1,8 @@
 var userCtrl = require('./userCtrl.js');
 
 module.exports = {
-  getUserFriends:getUserFriends
+  getUserFriends:getUserFriends,
+  getAllProfiles:getAllProfiles
 }
 
 var profiles = [
@@ -27,6 +28,10 @@ var profiles = [
   }
 ];
 
+
+function getAllProfiles(req,res,next) {
+  res.status(200).send(profiles);
+}
 
 
 function getUserFriends(req,res,next) {

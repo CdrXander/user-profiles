@@ -181,3 +181,7 @@ a:hover {
 	background: #06bbff;
 	background-image: linear-gradient(to right, #fff, #06bbff, #fff)
 }
+
+.micro-profile {
+	display: flex;
+}

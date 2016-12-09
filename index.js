@@ -26,7 +26,9 @@ app.use(express.static(__dirname + '/public'));
 
 app.post('/api/login', userCtrl.login)
 app.get('/api/profiles', profileCtrl.getUserFriends);
-
+app.get('/api/users', profileCtrl.getAllProfiles);
+app.post('/api/friend/add', userCtrl.addFriend, profileCtrl.getUserFriends);
+app.post('/api/friend/remove', userCtrl.removeFriend, profileCtrl.getUserFriends);
 
 app.listen(port, function() {
 	console.log("Listening on port: ", port);

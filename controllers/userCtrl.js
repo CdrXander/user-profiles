@@ -1,7 +1,9 @@
 
 module.exports = {
   getUsers:getUsers,
-  login:login
+  login:login,
+  addFriend:addFriend,
+  removeFriend:removeFriend
 }
 
 
@@ -52,4 +54,31 @@ function login(req,res,next) {
     console.log("User not found");
     res.status(200).send({userFound: false});
   } 
+}
+
+function addFriend(req,res,next) {
+  var result = req.session.currentUser.friends.filter(function(name) {
+    return name === req.body.friendName;
+  })
+  console.log(req.session.currentUser.friends + " : " + result)
+  if(result.length == 0) {
+    req.session.currentUser.friends.push(req.body.friendName);
+    console.log(req.session.currentUser.friends)
+  }
+
+  next();
+}
+
+
+function removeFriend(req,res,next) { 
+  
+  var friendList = req.session.currentUser.friends
+  for(var i = 0; i < friendList.length; i++) {
+      if(req.body.friendName === friendList[i]) {
+        friendList.splice(i,1);
+      }     
+  }
+  req.session.currentUser.friends = friendList;
+
+  next();
 }
